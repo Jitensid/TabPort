@@ -27,3 +27,6 @@ yarn-error.log*
 build.crx
 build.pem
 build.zip
+
+# ignore the important tabs json file regarding this project
+tabs.json

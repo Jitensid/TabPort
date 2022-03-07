@@ -1,6 +1,6 @@
 {
 	"name": "TabPort",
-	"description": "Manage your tabs without any hassles. Also, Sharing tabs have never been easier than this",
+	"description": "Managing your tabs has never been easier. Easily download your tabs into your system and load them instantly with a single click !",
 	"version": "0.0.0.1",
 	"manifest_version": 3,
 	"action": {
