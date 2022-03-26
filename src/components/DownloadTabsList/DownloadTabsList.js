@@ -155,6 +155,7 @@ const DownloadTabsList = ({ setShowUploadButton }) => {
 			</div>
 			<br />
 			<input
+				style={{ marginTop: '40px' }}
 				type='checkbox'
 				defaultChecked={downloadAllTabs}
 				onChange={handleCheckBoxChange}
@@ -162,7 +163,10 @@ const DownloadTabsList = ({ setShowUploadButton }) => {
 			<label for='checkbox'> Download All Tabs </label>
 			<br />
 			{downloadAllTabs === false ? showTabsList() : null}
-			<button className='extension_button' onClick={downloadSelectedTabs}>
+			<button
+				style={{ marginBottom: '20px' }}
+				className='extension_button'
+				onClick={downloadSelectedTabs}>
 				Download Tabs
 			</button>
 		</div>

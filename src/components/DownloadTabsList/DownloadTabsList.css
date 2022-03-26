@@ -10,11 +10,15 @@
 }
 
 .tabs_list_element {
-	margin-bottom: 5px;
-	margin-top: 5px;
+	margin-bottom: 10px;
+	margin-top: 10px;
+	margin-right: 10px;
+	max-width: 200px;
+	border: 2px solid;
+	/* border-radius: 30px; */
 }
 
 .tabs_list_div_element {
 	overflow-y: auto;
-	height: 100px;
+	max-height: 250px;
 }
