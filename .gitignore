@@ -30,3 +30,6 @@ build.zip
 
 # ignore the important tabs json file regarding this project
 tabs.json
+
+# ignore the TabPort Figma Folder
+/TabPort Figma
