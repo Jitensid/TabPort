@@ -1,70 +1,25 @@
-# Getting Started with Create React App
+## TabPort
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### Managing your tabs has never been easier. Easily download your tabs into your system and load them instantly with a single click !
 
-## Available Scripts
+### You can find the Extension by clicking [here](https://chrome.google.com/webstore/detail/tabport/dhkmlpcfghaaiiomhfdndoeghjmimafn)
 
-In the project directory, you can run:
+### Click Below to see the demo of the extension
 
-### `npm start`
+[![Watch the Demo](https://raw.githubusercontent.com/Jitensid/TabPort/main/TabPort%20Extension%20Icon%20500.png?token=GHSAT0AAAAAABQSFB2FWGVKQHJ6SJ6W3O6WYSJYEJA)](https://www.youtube.com/watch?v=6c-lPkKzI_E)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Your Browser tabs are important to you! Do you feel the need to store your tabs for later use but at the same time recover them instantly without compromising your privacy?
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+TabPort makes it easy for you to download your tabs into your local system and recover them later with the ease of just a single button click. After downloading the tabs into the local system, users can safely close them. That helps them to reduce their battery consumption. One can also easily share their tabs with colleagues and team members by simply sharing the downloaded tabs file. You can either download all tabs from the browser window or deselect the tabs that you wish to not download.
 
-### `npm test`
+### FEATURES
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Easy to Use.
+Download and Upload Tabs with a Single Button Click!
+Easily Share Tabs with Others.
 
-### `npm run build`
+### PRIVACY
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Your data is in your control! Not only your bowsing data but also tabs do not leave your system. TabPort extension will fetch the webpage title and URL of all tabs from the current browser window. These details get stored in your local system only.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+If you face any issues or have any suggestions please let me know. Your constructive feedback is appreciated.
