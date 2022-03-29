@@ -14,12 +14,12 @@ TabPort makes it easy for you to download your tabs into your local system and r
 
 ### FEATURES
 
-Easy to Use.
-Download and Upload Tabs with a Single Button Click!
-Easily Share Tabs with Others.
+1. Easy to Use.
+2. Download and Upload Tabs with a Single Button Click!
+3. Easily Share Tabs with Others.
 
 ### PRIVACY
 
-Your data is in your control! Not only your bowsing data but also tabs do not leave your system. TabPort extension will fetch the webpage title and URL of all tabs from the current browser window. These details get stored in your local system only.
+Your data is in your control! Not only your browsing data but also tabs do not leave your system. TabPort extension will fetch the webpage title and URL of all tabs from the current browser window. These details get stored in your local system only.
 
 If you face any issues or have any suggestions please let me know. Your constructive feedback is appreciated.
