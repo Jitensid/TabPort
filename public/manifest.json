@@ -1,7 +1,7 @@
 {
 	"name": "TabPort",
 	"description": "Managing your tabs has never been easier. Easily download your tabs into your system and load them instantly with a single click !",
-	"version": "0.0.0.3",
+	"version": "0.0.0.4",
 	"manifest_version": 3,
 	"action": {
 		"default_popup": "index.html"

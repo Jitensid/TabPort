@@ -120,17 +120,27 @@ const DownloadTabsList = ({ setShowUploadButton }) => {
 
 		return (
 			<div className='tabs_list_div_element'>
+				{/* iterate all the tabs and add tab list div element*/}
 				{currentTabsOpen.map((element, index) => {
 					return (
 						<div key={index} className='tabs_list_element'>
-							<input
-								onChange={(event) =>
-									handleSingleTabCheckBoxChange(event, index)
-								}
-								type='checkbox'
-								defaultChecked={allTabsCheckBox[index]}
-							/>
-							<label for='checkbox'> {element.title} </label>
+							<label
+								for='checkbox'
+								style={{
+									wordBreak: 'break-word',
+								}}>
+								<input
+									onChange={(event) =>
+										handleSingleTabCheckBoxChange(
+											event,
+											index
+										)
+									}
+									type='checkbox'
+									defaultChecked={allTabsCheckBox[index]}
+								/>
+								{element.title}
+							</label>
 							<br />
 						</div>
 					);
