@@ -25,6 +25,6 @@ Your data is in your control! Not only your browsing data but also tabs do not l
 If you face any issues or have any suggestions please let me know. Your constructive feedback is appreciated.
 
 
+### Contributions
 
-
-
+This project is open source. You are always welcome to raise issues and features. 
