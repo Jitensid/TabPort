@@ -1,34 +1,31 @@
 name: CI
 
 on:
-	push:
-		branches:
-			- main
+    push:
+        branches:
+                 - main
 
 jobs:
-	test: 
-		runs-on:  ${{ matrix.os }}
+    test: 
+         runs-on:  ${{ matrix.os }}
 
-		strategy:
-			matrix:
-				os: [ubuntu-latest, windows-latest, macos-latest]
-				node-version: [14.x]
+         strategy:
+             matrix: 
+               os: [ubuntu-latest, windows-latest, macos-latest]
+               node-version: [14.x]
+         steps:
+            - uses: actions/checkout@v2
 
-		name: Unit Tests for TabPort Chrome Extension
-		
-		steps:
-			- uses: actions/checkout@v2
+            - name: Use Node.js ${{ matrix.node-version }}
+              uses: actions/setup-node@v1
+              with: 
+                node-version: ${{ matrix.node-version }}
 
-			- name: Use Node.js ${{ matrix.node-version }}
-			  uses: actions/setup-node@v1
-			  with: 
-			  	node-version: ${{ matrix.node-version }}
-			
-			- name: Install Node Modules
-			  run: npm install
+            - name: Install Node Modules
+              run: npm install
 
-			- name: Run Unit Test coverage
-			  run: npm run test:coverage
+            - name: Run Unit Test coverage
+              run: npm run test:coverage
 
-			- name: Upload coverage to CodeCov
-			  uses: codecov/codecov-action@v2
+            - name: Upload coverage to CodeCov
+              uses: codecov/codecov-action@v2
