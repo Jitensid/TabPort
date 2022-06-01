@@ -21,6 +21,8 @@ const UploadButton = () => {
 	useEffect(() => {
 		// call the function that opens tabs if JSON file is valid
 		launchAllTabs();
+
+		return () => {};
 	}, [jsonFile]);
 
 	const launchAllTabs = () => {
@@ -36,20 +38,9 @@ const UploadButton = () => {
 		fileReader.readAsText(jsonFile);
 
 		// when fileReader is ready
-		fileReader.onload = () => {
+		fileReader.onload = (event) => {
 			try {
-				// parse the JSON object from the uploaded JSON file
-				const newTabsToOpen = JSON.parse(fileReader.result);
-
-				// iterate all the tabs and launch the tabs into the browser
-				newTabsToOpen.map((tab) => {
-					chrome.tabs.create({
-						url: tab.url,
-					});
-				});
-
-				// update the state variable to add new tabs from file also
-				setCurrentTabs([...currentTabsOpen, ...newTabsToOpen]);
+				handleFileReaderSuccessEvent(event.target.result);
 			} catch (error) {
 				alert(JSON_FILE_PARSING_ERROR_MESSAGE);
 			}
@@ -60,6 +51,22 @@ const UploadButton = () => {
 		fileReader.onerror = (error) => {
 			alert(JSON_FILE_PARSING_ERROR_MESSAGE);
 		};
+	};
+
+	// function to be called when fileReader successfully reads the text from the uploaded file
+	const handleFileReaderSuccessEvent = (fileReaderResult) => {
+		// parse the JSON object from the uploaded JSON file
+		const newTabsToOpen = JSON.parse(fileReaderResult);
+
+		// iterate all the tabs and launch the tabs into the browser
+		newTabsToOpen.map((tab) => {
+			chrome.tabs.create({
+				url: tab.url,
+			});
+		});
+
+		// update the state variable to add new tabs from file also
+		setCurrentTabs([...currentTabsOpen, ...newTabsToOpen]);
 	};
 
 	const handleUploadButtonClick = () => {
@@ -81,6 +88,7 @@ const UploadButton = () => {
 	return (
 		<div>
 			<input
+				data-testid='fileInputRef'
 				ref={fileInputRef}
 				type='file'
 				onChange={handleFileUpload}

@@ -125,11 +125,12 @@ const DownloadTabsList = ({ setShowUploadButton }) => {
 					return (
 						<div key={index} className='tabs_list_element'>
 							<label
-								for='checkbox'
+								htmlFor={'single_tab_' + index}
 								style={{
 									wordBreak: 'break-word',
 								}}>
 								<input
+									data-testid={'single_tab_' + index}
 									onChange={(event) =>
 										handleSingleTabCheckBoxChange(
 											event,
