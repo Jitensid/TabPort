@@ -95,7 +95,7 @@ describe('DownloadTabsList Component with setShowUploadButton hidden', () => {
 			).toBeInTheDocument();
 		});
 
-		test('uncheck single tab from the tabs list ', () => {
+		test('uncheck single tab from the tabs list', () => {
 			// query the single tab checkbox from the rendered tabs list
 			const firstTabCheckboxElement = screen.getByTestId('single_tab_0');
 
