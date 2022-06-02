@@ -1,15 +1,6 @@
-/*global chrome*/
-
 import { fireEvent, render, screen } from '@testing-library/react';
 import UploadButton from '../../../components/UploadButton/UploadButton';
-
-// mock the chrome api's query and create methods for testing
-global.chrome = {
-	tabs: {
-		query: jest.fn(),
-		create: jest.fn(),
-	},
-};
+import chrome from '../../../chrome/chrome';
 
 // mock the alert method for testing
 window.alert = jest.fn();

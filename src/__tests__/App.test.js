@@ -1,13 +1,6 @@
-/*global chrome*/
-
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import App from '../App';
-
-global.chrome = {
-	tabs: {
-		query: jest.fn(),
-	},
-};
+import chrome from '../chrome/chrome';
 
 // stores the titles and urls of tabs used for unit tests
 const mockedTabsList = [

@@ -1,5 +1,5 @@
 ## TabPort
-
+[![codecov](https://codecov.io/gh/Jitensid/TabPort/branch/main/graph/badge.svg?token=WXOWQ9AJCC)](https://codecov.io/gh/Jitensid/TabPort)
 ### Managing your tabs has never been easier. Easily download your tabs into your system and load them instantly with a single click !
 
 ### You can find the Extension by clicking [here](https://chrome.google.com/webstore/detail/tabport/dhkmlpcfghaaiiomhfdndoeghjmimafn)

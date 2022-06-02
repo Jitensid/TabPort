@@ -1,17 +1,6 @@
-/*global chrome*/
-
 import { fireEvent, render, screen } from '@testing-library/react';
 import DownloadButton from '../../../components/DownloadButton/DownloadButton';
-
-global.chrome = {
-	tabs: {
-		create: jest.fn(),
-		query: jest.fn(),
-	},
-	downloads: {
-		download: jest.fn(),
-	},
-};
+import chrome from '../../../chrome/chrome';
 
 global.URL = {
 	createObjectURL: jest.fn(),
@@ -23,22 +12,23 @@ const mockedTabsList = [
 	{ url: 'url2', title: 'title2' },
 ];
 
+let mockedTabsQuery;
+
+mockedTabsQuery = jest.spyOn(chrome.tabs, 'query').mockImplementation(
+	(
+		query,
+		cb = (tabs) => {
+			return tabs;
+		}
+	) => {
+		return cb(mockedTabsList);
+	}
+);
+
 describe('DownloadButtons Component showUploadButton equal to false', () => {
 	let downloadTabsButtonElement;
-	let mockedTabsQuery;
 
 	beforeEach(() => {
-		mockedTabsQuery = jest.spyOn(chrome.tabs, 'query').mockImplementation(
-			(
-				query,
-				cb = (tabs) => {
-					return tabs;
-				}
-			) => {
-				return cb(mockedTabsList);
-			}
-		);
-
 		render(
 			<DownloadButton
 				showUploadButton={false}
@@ -51,6 +41,10 @@ describe('DownloadButtons Component showUploadButton equal to false', () => {
 		downloadTabsButtonElement = screen.getByRole('button', {
 			name: 'Download Tabs',
 		});
+	});
+
+	afterEach(() => {
+		jest.restoreAllMocks();
 	});
 
 	test('Download Button Component renders properly', () => {
@@ -79,21 +73,9 @@ describe('DownloadButtons Component showUploadButton equal to false', () => {
 });
 
 describe('DownloadButtons Component showUploadButton equal to true', () => {
-	let mockedTabsQuery;
 	let downloadTabsButtonElement;
 
 	beforeEach(() => {
-		mockedTabsQuery = jest.spyOn(chrome.tabs, 'query').mockImplementation(
-			(
-				query,
-				cb = (tabs) => {
-					return tabs;
-				}
-			) => {
-				return cb(mockedTabsList);
-			}
-		);
-
 		render(
 			<DownloadButton
 				showUploadButton={true}
@@ -108,27 +90,19 @@ describe('DownloadButtons Component showUploadButton equal to true', () => {
 		});
 	});
 
+	afterEach(() => {
+		jest.restoreAllMocks();
+	});
+
 	test('DownloadButton Click Test', () => {
 		fireEvent.click(downloadTabsButtonElement);
 	});
 });
 
 describe('DownloadButtons Component showUploadButton equal to true and no tabs', () => {
-	let mockedTabsQuery;
 	let downloadTabsButtonElement;
 
 	beforeEach(() => {
-		mockedTabsQuery = jest.spyOn(chrome.tabs, 'query').mockImplementation(
-			(
-				query,
-				cb = (tabs) => {
-					return tabs;
-				}
-			) => {
-				return cb([]);
-			}
-		);
-
 		render(
 			<DownloadButton
 				showUploadButton={true}

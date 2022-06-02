@@ -1,24 +1,12 @@
-/*global chrome*/
-
 import { fireEvent, render, screen } from '@testing-library/react';
 import DownloadTabsList from '../../../components/DownloadTabsList/DownloadTabsList';
+import chrome from '../../../chrome/chrome';
 
 // stores the titles and urls of tabs used for unit testss
 const mockedTabsList = [
 	{ url: 'url1', title: 'title1' },
 	{ url: 'url2', title: 'title2' },
 ];
-
-// mock the chrome api's query and create methods for testing
-global.chrome = {
-	tabs: {
-		query: jest.fn(),
-		create: jest.fn(),
-	},
-	downloads: {
-		download: jest.fn(),
-	},
-};
 
 global.URL = {
 	createObjectURL: jest.fn(),
@@ -28,9 +16,7 @@ describe('DownloadTabsList Component with setShowUploadButton hidden', () => {
 	let backButtonElement;
 	let downloadTabsButtonElement;
 	let downloadAllTabsCheckBoxElement;
-	let mockedTabsQuery;
-	let mockedDownloadTabs;
-	let mockedCreateObjectURL;
+	let mockedTabsQuery, mockedCreateObjectURL, mockedDownloadTabs;
 
 	beforeEach(() => {
 		mockedTabsQuery = jest.spyOn(chrome.tabs, 'query').mockImplementation(
@@ -58,6 +44,10 @@ describe('DownloadTabsList Component with setShowUploadButton hidden', () => {
 			name: 'Download Tabs',
 		});
 		downloadAllTabsCheckBoxElement = screen.getByRole('checkbox');
+	});
+
+	afterEach(() => {
+		jest.restoreAllMocks();
 	});
 
 	test('Back, Download Tabs Button and Download All Tabs checkbox is rendered properly', () => {
@@ -89,6 +79,10 @@ describe('DownloadTabsList Component with setShowUploadButton hidden', () => {
 		beforeEach(() => {
 			// uncheck the downloadAllTabsCheckbox
 			fireEvent.click(downloadAllTabsCheckBoxElement);
+		});
+
+		afterEach(() => {
+			jest.restoreAllMocks();
 		});
 
 		test('List of tabs is displayed properly', () => {
