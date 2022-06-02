@@ -38,5 +38,12 @@
 	},
 	"devDependencies": {
 		"jest-watch-typeahead": "^0.6.5"
+	},
+	"jest": {
+		"collectCoverageFrom": [
+			"src/**/*.{js,jsx}",
+			"!src/index.js",
+			"!src/reportWebVitals.js"
+		]
 	}
 }
