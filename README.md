@@ -1,6 +1,7 @@
 ## TabPort
 
 [![codecov](https://codecov.io/gh/Jitensid/TabPort/branch/main/graph/badge.svg?token=WXOWQ9AJCC)](https://codecov.io/gh/Jitensid/TabPort)
+[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
 ### Managing your tabs has never been easier. Easily download your tabs into your system and load them instantly with a single click !
 
