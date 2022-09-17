@@ -119,16 +119,17 @@ const DownloadTabsList = ({ setShowUploadButton }) => {
 		// show  the title of all tabs of the current browser window
 
 		return (
-			<div className='tabs_list_div_element'>
+			<div className="tabs_list_div_element">
 				{/* iterate all the tabs and add tab list div element*/}
 				{currentTabsOpen.map((element, index) => {
 					return (
-						<div key={index} className='tabs_list_element'>
+						<div key={index} className="tabs_list_element">
 							<label
 								htmlFor={'single_tab_' + index}
 								style={{
 									wordBreak: 'break-word',
-								}}>
+								}}
+							>
 								<input
 									data-testid={'single_tab_' + index}
 									onChange={(event) =>
@@ -137,7 +138,7 @@ const DownloadTabsList = ({ setShowUploadButton }) => {
 											index
 										)
 									}
-									type='checkbox'
+									type="checkbox"
 									defaultChecked={allTabsCheckBox[index]}
 								/>
 								{element.title}
@@ -159,25 +160,27 @@ const DownloadTabsList = ({ setShowUploadButton }) => {
 		<div>
 			<div>
 				<button
-					className='extension_button top_left_secondary_button'
-					onClick={handleBackButtonClick}>
+					className="extension_button top_left_secondary_button"
+					onClick={handleBackButtonClick}
+				>
 					Back
 				</button>
 			</div>
 			<br />
 			<input
 				style={{ marginTop: '40px' }}
-				type='checkbox'
+				type="checkbox"
 				defaultChecked={downloadAllTabs}
 				onChange={handleCheckBoxChange}
 			/>
-			<label for='checkbox'> Download All Tabs </label>
+			<label for="checkbox"> Download All Tabs </label>
 			<br />
 			{downloadAllTabs === false ? showTabsList() : null}
 			<button
 				style={{ marginBottom: '20px' }}
-				className='extension_button'
-				onClick={downloadSelectedTabs}>
+				className="extension_button"
+				onClick={downloadSelectedTabs}
+			>
 				Download Tabs
 			</button>
 		</div>

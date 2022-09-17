@@ -20,8 +20,9 @@ const DownloadButton = ({ showUploadButton, setShowUploadButton }) => {
 			return (
 				// show the download tabs button only
 				<button
-					class='extension_button'
-					onClick={handleDownloadButtonClick}>
+					class="extension_button"
+					onClick={handleDownloadButtonClick}
+				>
 					Download Tabs
 				</button>
 			);

@@ -1,5 +1,7 @@
 ## TabPort
+
 [![codecov](https://codecov.io/gh/Jitensid/TabPort/branch/main/graph/badge.svg?token=WXOWQ9AJCC)](https://codecov.io/gh/Jitensid/TabPort)
+
 ### Managing your tabs has never been easier. Easily download your tabs into your system and load them instantly with a single click !
 
 ### You can find the Extension by clicking [here](https://chrome.google.com/webstore/detail/tabport/dhkmlpcfghaaiiomhfdndoeghjmimafn)
@@ -24,7 +26,6 @@ Your data is in your control! Not only your browsing data but also tabs do not l
 
 If you face any issues or have any suggestions please let me know. Your constructive feedback is appreciated.
 
-
 ### Contributions
 
-This project is open source. You are always welcome to raise issues and features. 
+This project is open source. You are always welcome to raise issues and features.
