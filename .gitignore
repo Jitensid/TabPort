@@ -23,7 +23,7 @@ yarn-debug.log*
 yarn-error.log*
 
 # ignore the vscode settings folder
-.vscode/settings.json
+.vscode/
 
 # ignore the chrome extension generated files
 build.crx
