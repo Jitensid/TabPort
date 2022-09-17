@@ -9,8 +9,8 @@ const App = () => {
 	const [showUploadButton, setShowUploadButton] = useState(true);
 
 	return (
-		<div className='App'>
-			<header className='App-header'>
+		<div className="App">
+			<header className="App-header">
 				<DownloadButton
 					showUploadButton={showUploadButton}
 					setShowUploadButton={setShowUploadButton}
