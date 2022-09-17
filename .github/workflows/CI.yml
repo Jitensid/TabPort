@@ -3,26 +3,29 @@ name: CI
 on:
     push:
         branches:
-                 - '**'
+            - "**"
 
 jobs:
-    test: 
-         runs-on:  ${{ matrix.os }}
+    test:
+        runs-on: ${{ matrix.os }}
 
-         strategy:
-             matrix: 
-               os: [ubuntu-latest, windows-latest, macos-latest]
-               node-version: [14.x]
-         steps:
+        strategy:
+            matrix:
+                os: [ubuntu-latest, windows-latest, macos-latest]
+                node-version: [14.x]
+        steps:
             - uses: actions/checkout@v2
 
             - name: Use Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v1
-              with: 
-                node-version: ${{ matrix.node-version }}
+              with:
+                  node-version: ${{ matrix.node-version }}
 
             - name: Install Node Modules
               run: npm install
+
+            - name: Format Code using Prettier
+              run: npm run format
 
             - name: Run Unit Test coverage
               run: npm run test:coverage

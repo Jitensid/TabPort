@@ -88,14 +88,14 @@ const UploadButton = () => {
 	return (
 		<div>
 			<input
-				data-testid='fileInputRef'
+				data-testid="fileInputRef"
 				ref={fileInputRef}
-				type='file'
+				type="file"
 				onChange={handleFileUpload}
-				accept='application/JSON'
+				accept="application/JSON"
 				style={{ opacity: 0 }}
 			/>
-			<button class='extension_button' onClick={handleUploadButtonClick}>
+			<button class="extension_button" onClick={handleUploadButtonClick}>
 				Upload Tabs
 			</button>
 		</div>
