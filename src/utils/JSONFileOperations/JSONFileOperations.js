@@ -9,7 +9,10 @@ const downloadFile = (fileData, fileFormat) => {
 	const jsonFileData = JSON.stringify(fileData, null, '\t');
 
 	// create a new Blob Object of JSON Format
-	const jsonFile = new Blob([jsonFileData], { type: DeterminUrlType(fileFormat) });
+	const jsonFile = new Blob([jsonFileData], {
+		//calls function to determin the correct URL type needed for the file
+		type: DeterminUrlType(fileFormat)
+	});
 
 	// create a downloadable URL of the above JSON File
 	const jsonURL = URL.createObjectURL(jsonFile);

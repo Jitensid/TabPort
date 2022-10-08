@@ -22,6 +22,7 @@ const DownloadTabsList = ({ setShowUploadButton }) => {
 		})
 	);
 
+	//state to store selected file format
 	const [fileFormatSelection, setFileFormatSelection] = useState(FileFormats.json);
 
 	useEffect(() => {
@@ -160,6 +161,7 @@ const DownloadTabsList = ({ setShowUploadButton }) => {
 	};
 
 	const handleFileFormatSelection = (event) => {
+		//when file format selection is changed store file format in state
 		setFileFormatSelection(event.target.value);
 	}
 
