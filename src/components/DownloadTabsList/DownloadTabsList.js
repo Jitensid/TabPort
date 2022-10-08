@@ -70,7 +70,7 @@ const DownloadTabsList = ({ setShowUploadButton }) => {
 		// when the button is clicked download all tabs that the user has selected
 		if (tabsToDownload.length > 0) {
 			// download selected tabs
-			downloadFile(tabsToDownload);
+			downloadFile(tabsToDownload, fileFormatSelection);
 		}
 	};
 
