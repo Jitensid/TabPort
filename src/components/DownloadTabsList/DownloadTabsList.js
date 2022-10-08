@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import useChromeAPIToGetTabs from '../../customhooks/useChromeAPIToGetTabs/useChromeAPIToGetTabs';
+import { FileFormats } from '../../utils/FileFormat';
 import { downloadFile } from '../../utils/JSONFileOperations/JSONFileOperations';
 import '../Button.css';
 import './DownloadTabsList.css';
@@ -20,6 +21,8 @@ const DownloadTabsList = ({ setShowUploadButton }) => {
 			return true;
 		})
 	);
+
+	const [fileFormatSelection, setFileFormatSelection] = useState(FileFormats.json);
 
 	useEffect(() => {
 		if (currentTabsOpen.length > 0) {
@@ -156,6 +159,10 @@ const DownloadTabsList = ({ setShowUploadButton }) => {
 		setShowUploadButton(true);
 	};
 
+	const handleFileFormatSelection = (event) => {
+		setFileFormatSelection(event.target.value);
+	}
+
 	return (
 		<div>
 			<div>
@@ -166,9 +173,29 @@ const DownloadTabsList = ({ setShowUploadButton }) => {
 					Back
 				</button>
 			</div>
+			<div style={{ marginTop: '60px' }}>
+				<div style={{ textAlign: 'left', }} onChange={handleFileFormatSelection}>
+					<label>File Format:</label>
+					<br />
+					<input
+						type={"radio"}
+						name={"fileType"}
+						value={FileFormats.json}
+						defaultChecked={fileFormatSelection === FileFormats.json}
+					/>
+					<label>{FileFormats.json}</label>
+					<br />
+					<input
+						type={"radio"}
+						name={"fileType"}
+						value={FileFormats.txt}
+						defaultChecked={fileFormatSelection === FileFormats.txt}
+					/>
+					<label>{FileFormats.txt}</label>
+				</div>
+			</div>
 			<br />
 			<input
-				style={{ marginTop: '40px' }}
 				type="checkbox"
 				defaultChecked={downloadAllTabs}
 				onChange={handleCheckBoxChange}
