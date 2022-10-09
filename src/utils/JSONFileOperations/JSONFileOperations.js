@@ -1,6 +1,6 @@
 /*global chrome*/
 
-import { DeterminUrlType, FileFormats } from "../FileFormat";
+import { determinUrlType, fileFormats } from "../FileFormat";
 
 const downloadFile = (fileData, fileFormat) => {
 	// fileData is the JSON data that needs to be stored in file
@@ -11,7 +11,7 @@ const downloadFile = (fileData, fileFormat) => {
 	// create a new Blob Object of JSON Format
 	const jsonFile = new Blob([jsonFileData], {
 		//calls function to determin the correct URL type needed for the file
-		type: DeterminUrlType(fileFormat)
+		type: determinUrlType(fileFormat)
 	});
 
 	// create a downloadable URL of the above JSON File

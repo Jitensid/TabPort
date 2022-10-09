@@ -1,15 +1,15 @@
 //availabe file formats to download
-export const FileFormats = {
+export const fileFormats = {
     json: 'json',
     txt: 'txt'
 }
 
 //determins the correct URL type needed for the file download
-export function DeterminUrlType(fileFormat) {
+export function determinUrlType(fileFormat) {
     switch (fileFormat) {
-        case FileFormats.json:
+        case fileFormats.json:
             return "application/json"
-        case FileFormats.txt:
+        case fileFormats.txt:
             return "text/plain"
         default:
             return "application/json"

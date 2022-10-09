@@ -1,9 +1,9 @@
-import { DeterminUrlType, FileFormats } from "../../utils/FileFormat";
+import { determinUrlType, fileFormats } from "../../utils/FileFormat";
 
 describe("FileFormat Util", () => {
-    test("DeterminUrlType returns correct type", () => {
-        const x = DeterminUrlType(FileFormats.json);
-        const y = DeterminUrlType(FileFormats.txt);
+    test("determinUrlType returns correct type", () => {
+        const x = determinUrlType(fileFormats.json);
+        const y = determinUrlType(fileFormats.txt);
         expect(x).toBe("application/json");
         expect(y).toBe("text/plain");
     });
