@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import useChromeAPIToGetTabs from '../../customhooks/useChromeAPIToGetTabs/useChromeAPIToGetTabs';
+import { fileFormats } from '../../utils/FileFormat';
 import { copyFile, downloadFile } from '../../utils/JSONFileOperations/JSONFileOperations';
 import '../Button.css';
 import './DownloadTabsList.css';
@@ -20,6 +21,9 @@ const DownloadTabsList = ({ setShowUploadButton }) => {
 			return true;
 		})
 	);
+
+	//state to store selected file format
+	const [fileFormatSelection, setFileFormatSelection] = useState(fileFormats.json);
 
 	useEffect(() => {
 		if (currentTabsOpen.length > 0) {
@@ -67,7 +71,7 @@ const DownloadTabsList = ({ setShowUploadButton }) => {
 		// when the button is clicked download all tabs that the user has selected
 		if (tabsToDownload.length > 0) {
 			// download selected tabs
-			downloadFile(tabsToDownload);
+			downloadFile(tabsToDownload, fileFormatSelection);
 		}
 	};
 
@@ -164,6 +168,11 @@ const DownloadTabsList = ({ setShowUploadButton }) => {
 		setShowUploadButton(true);
 	};
 
+	const handleFileFormatSelection = (event) => {
+		//when file format selection is changed store file format in state
+		setFileFormatSelection(event.target.value);
+	}
+
 	return (
 		<div>
 			<div>
@@ -174,9 +183,29 @@ const DownloadTabsList = ({ setShowUploadButton }) => {
 					Back
 				</button>
 			</div>
+			<div style={{ marginTop: '60px' }}>
+				<div style={{ textAlign: 'left', }} onChange={handleFileFormatSelection}>
+					<label>File Format:</label>
+					<br />
+					<input
+						type={"radio"}
+						name={"fileType"}
+						value={fileFormats.json}
+						defaultChecked={fileFormatSelection === fileFormats.json}
+					/>
+					<label>{fileFormats.json}</label>
+					<br />
+					<input
+						type={"radio"}
+						name={"fileType"}
+						value={fileFormats.txt}
+						defaultChecked={fileFormatSelection === fileFormats.txt}
+					/>
+					<label>{fileFormats.txt}</label>
+				</div>
+			</div>
 			<br />
 			<input
-				style={{ marginTop: '40px' }}
 				type="checkbox"
 				defaultChecked={downloadAllTabs}
 				onChange={handleCheckBoxChange}
