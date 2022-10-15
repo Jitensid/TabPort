@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import useChromeAPIToGetTabs from '../../customhooks/useChromeAPIToGetTabs/useChromeAPIToGetTabs';
-import { downloadFile } from '../../utils/JSONFileOperations/JSONFileOperations';
+import { copyFile, downloadFile } from '../../utils/JSONFileOperations/JSONFileOperations';
 import '../Button.css';
 import './DownloadTabsList.css';
 
@@ -68,6 +68,14 @@ const DownloadTabsList = ({ setShowUploadButton }) => {
 		if (tabsToDownload.length > 0) {
 			// download selected tabs
 			downloadFile(tabsToDownload);
+		}
+	};
+
+	const copySelectedTabs = () => {
+		// when the button is clicked download all tabs that the user has selected
+		if (tabsToDownload.length > 0) {
+			// copy selected tabs
+			copyFile(tabsToDownload);
 		}
 	};
 
@@ -182,6 +190,13 @@ const DownloadTabsList = ({ setShowUploadButton }) => {
 				onClick={downloadSelectedTabs}
 			>
 				Download Tabs
+			</button>
+			<button
+				style={{ marginBottom: '20px' }}
+				className="extension_button"
+				onClick={copySelectedTabs}
+			>
+				Copy Tabs
 			</button>
 		</div>
 	);

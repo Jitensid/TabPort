@@ -19,4 +19,26 @@ const downloadFile = (fileData) => {
 	});
 };
 
-export { downloadFile };
+const copyFile = (fileData) => {
+	// fileData is the JSON data that needs to be stored in file
+
+	// stringify the JSON data with tab separation to make it look properly formatted
+	const jsonFileData = JSON.stringify(fileData, null, '\t');
+
+	var textArea = document.createElement("textarea");
+	textArea.value = jsonFileData;
+
+	document.body.appendChild(textArea);
+	textArea.focus();
+	textArea.select();
+
+	try {
+		document.execCommand('copy');
+	} catch (err) {
+		console.error('Copying failed.', err);
+	}
+
+	document.body.removeChild(textArea);
+}
+
+export { downloadFile, copyFile };
