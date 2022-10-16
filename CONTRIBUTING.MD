@@ -18,3 +18,7 @@ Firstly, thank you for showing interest in contributing to TabPort!. I really ap
 6. Enable developer mode.
 7. Click on **load unpacked** button and upload the **build** directory from the codebase.
 8. Now test your extension locally !
+
+### Important Resources 
+
+1. [Chrome Extension Development Docs](https://developer.chrome.com/docs/extensions/mv3/getstarted/development-basics/)
