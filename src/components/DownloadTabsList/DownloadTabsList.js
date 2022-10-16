@@ -173,6 +173,21 @@ const DownloadTabsList = ({ setShowUploadButton }) => {
 		setFileFormatSelection(event.target.value);
 	}
 
+	const showDownloadCheckbox = () => {
+		return (
+			<div>
+				<input
+				type="checkbox"
+				defaultChecked={downloadAllTabs}
+				onChange={handleCheckBoxChange}
+				/>
+				<label for="checkbox"> Download All Tabs </label>
+				<br />
+				{downloadAllTabs === false ? showTabsList() : null}
+			</div>
+		)
+	}
+
 	return (
 		<div>
 			<div>
@@ -205,14 +220,7 @@ const DownloadTabsList = ({ setShowUploadButton }) => {
 				</div>
 			</div>
 			<br />
-			<input
-				type="checkbox"
-				defaultChecked={downloadAllTabs}
-				onChange={handleCheckBoxChange}
-			/>
-			<label for="checkbox"> Download All Tabs </label>
-			<br />
-			{downloadAllTabs === false ? showTabsList() : null}
+			{currentTabsOpen.length > 1 ? showDownloadCheckbox() : null}
 			<button
 				style={{ marginBottom: '20px' }}
 				className="extension_button"
