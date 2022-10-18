@@ -3,6 +3,8 @@
 import { useEffect, useRef, useState } from 'react';
 import useChromeAPIToGetTabs from '../../customhooks/useChromeAPIToGetTabs/useChromeAPIToGetTabs';
 import '../Button.css';
+import { fileFormats } from '../../utils/FileFormat'
+import { read, utils } from 'xlsx';
 
 const UploadButton = () => {
 	// get opened tabs of the current browser window with useChromeAPIToGetTabs hook
@@ -77,9 +79,45 @@ const UploadButton = () => {
 	const handleFileUpload = (event) => {
 		// get the uploaded file
 		const uploadedFile = event.target.files[0];
+		
+		// get the file extension
+		const file_extension = fileInputRef.current.files[0].name.split('.')[1];
+		
+		// Only json, txt and xlsx file format are supported by TabPort
+		if(file_extension === fileFormats.excel || file_extension == fileFormats.json || file_extension == fileFormats.txt) {
 
-		// update the jsonFile state variable
-		setjsonFile(uploadedFile);
+			if(file_extension == fileFormats.excel) {
+				// create a fileReader Object Instance to read contents of the excel file
+				const fileReader = new FileReader();
+
+				// read the excel file as an array buffer
+				fileReader.readAsArrayBuffer(uploadedFile);
+
+				fileReader.onload = function(event) {
+					// get the worksheet by reading the array buffer file
+					const fileArrayBuffer = event.target.result;
+					const wb = read(fileArrayBuffer, {type: "buffer"});
+					const ws = wb.Sheets[wb.SheetNames[0]];
+
+					// convert the worksheet to json
+					const data = utils.sheet_to_json(ws);
+
+					// open all the tabs
+					data.map((tab) => {
+						chrome.tabs.create({
+							url: tab.url,
+						});
+					});
+				}
+			}
+			else {
+				// update the jsonFile state variable
+				setjsonFile(uploadedFile);
+			}
+		}
+		else {
+			alert(`.${file_extension} file format not supported`);
+		}
 
 		// later reset the file input form
 		event.target.value = null;
@@ -92,7 +130,6 @@ const UploadButton = () => {
 				ref={fileInputRef}
 				type="file"
 				onChange={handleFileUpload}
-				accept="application/JSON"
 				style={{ opacity: 0 }}
 			/>
 			<button class="extension_button" onClick={handleUploadButtonClick}>
