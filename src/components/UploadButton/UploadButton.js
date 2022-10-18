@@ -80,6 +80,11 @@ const UploadButton = () => {
 		// get the uploaded file
 		const uploadedFile = event.target.files[0];
 		
+		if(fileInputRef.current.files[0].name == undefined) {
+			alert(`File not defined`);
+			return;
+		}
+
 		// get the file extension
 		const file_extension = fileInputRef.current.files[0].name.split('.')[1];
 		
