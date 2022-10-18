@@ -13,6 +13,5 @@ export function determinUrlType(fileFormat) {
             return "text/plain"
         default:
             return "application/json"
-            break;
     }
 }
