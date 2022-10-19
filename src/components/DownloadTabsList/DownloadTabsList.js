@@ -97,13 +97,34 @@ const DownloadTabsList = ({ setShowUploadButton }) => {
 	};
 
 	const handleSingleTabCheckBoxChange = (event, index) => {
-		// updating state of check box
-		setAllTabsCheckBox(prev => {
-			const updatedAllTabsCheckBox = [];
-			prev.map((ele) => updatedAllTabsCheckBox.push(ele));
-			updatedAllTabsCheckBox[index] = !updatedAllTabsCheckBox[index];
-			return updatedAllTabsCheckBox;
-		})
+		// if checkbox for that tab was selected
+		if (allTabsCheckBox[index] === true) {
+			// grab the status of checkboxes of all tabs
+			const updatedAllTabsCheckBox = allTabsCheckBox.map(
+				(tab_checkbox) => {
+					return tab_checkbox;
+				}
+			);
+
+			// set the status of the checkbox to false
+			updatedAllTabsCheckBox[index] = false;
+
+			// update the state accordingly
+			setAllTabsCheckBox(updatedAllTabsCheckBox);
+		} else {
+			// grab the status of checkboxes of all tabs
+			const updatedAllTabsCheckBox = allTabsCheckBox.map(
+				(tab_checkbox) => {
+					return tab_checkbox;
+				}
+			);
+
+			// set the status of the checkbox to false
+			updatedAllTabsCheckBox[index] = true;
+
+			// update the state accordingly
+			setAllTabsCheckBox(updatedAllTabsCheckBox);
+		}
 	};
 
 	const showTabsList = () => {
