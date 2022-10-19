@@ -80,7 +80,9 @@ describe('Upload Button Component functions work properly', () => {
 		});
 
 		// call the mocked onload of the FileReader
-		fileReader.onload({ target: { result: 'a' } });
+		fileReader.onload = function(event) {
+			return {target: {result: 'a'}}
+		};
 
 		// call the mocked onerror of the FileReader
 		fileReader.onerror('s');
