@@ -85,7 +85,9 @@ describe('Upload Button Component functions work properly', () => {
 		};
 
 		// call the mocked onerror of the FileReader
-		fileReader.onerror('s');
+		fileReader.onerror = function(error) {
+			return 's';
+		};
 
 		expect(fileReader.readAsText).toBeCalledWith(dummyFile);
 	});
