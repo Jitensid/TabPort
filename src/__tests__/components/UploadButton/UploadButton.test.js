@@ -32,10 +32,15 @@ describe('Upload Button Component functions work properly', () => {
 		// create a dummy object to be stored as JSON file
 		const validJSONFile = [{ title: 'world', url: 'google.com' }];
 
-		// create a dummy file in JSON Format
-		const dummyFile = new Blob([JSON.stringify(validJSONFile, null, 2)], {
+		// create a test blob file in JSON Format
+		const testBlob = new Blob([JSON.stringify(validJSONFile, null, 2)], {
 			type: 'application/json',
 		});
+
+		// create a test json file
+		const testFile = new File([testBlob], "tabs.json", {
+			type: "application/json"
+		})
 
 		// mock the fileReader's readAsText with jest.fn()
 		const fileReader = {
@@ -75,7 +80,7 @@ describe('Upload Button Component functions work properly', () => {
 		// initiate a change event on the file input
 		fireEvent.change(fileInputRefElement, {
 			target: {
-				files: [dummyFile],
+				files: [testFile],
 			},
 		});
 
@@ -89,6 +94,6 @@ describe('Upload Button Component functions work properly', () => {
 			return 's';
 		};
 
-		expect(fileReader.readAsText).toBeCalledWith(dummyFile);
+		expect(fileReader.readAsText).toBeCalledWith(testFile);
 	});
 });
