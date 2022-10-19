@@ -112,6 +112,9 @@ const UploadButton = () => {
 						chrome.tabs.create({
 							url: tab.url,
 						});
+
+					// update the state variable to add the new tabs from the file also
+					setCurrentTabs([...currentTabsOpen, ...data]);
 					});
 				}
 			}
