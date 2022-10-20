@@ -3,7 +3,7 @@ import useChromeAPIToGetTabs from '../../customhooks/useChromeAPIToGetTabs/useCh
 import { fileFormats } from '../../utils/FileFormat';
 import { copyFile, downloadFile } from '../../utils/JSONFileOperations/JSONFileOperations';
 import '../Button.css';
-import './DownloadTabsList.css';
+import '../TabsList.css';
 
 const DownloadTabsList = ({ setShowUploadButton }) => {
 	// get opened tabs of the current browser window with useChromeAPIToGetTabs hook
