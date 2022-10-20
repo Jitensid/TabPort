@@ -89,9 +89,9 @@ const UploadButton = () => {
 		const file_extension = fileInputRef.current.files[0].name.split('.')[1];
 		
 		// Only json, txt and xlsx file format are supported by TabPort
-		if(file_extension === fileFormats.excel || file_extension == fileFormats.json || file_extension == fileFormats.txt) {
+		if(file_extension === fileFormats.excel || file_extension === fileFormats.json || file_extension === fileFormats.txt) {
 
-			if(file_extension == fileFormats.excel) {
+			if(file_extension === fileFormats.excel) {
 				// create a fileReader Object Instance to read contents of the excel file
 				const fileReader = new FileReader();
 
