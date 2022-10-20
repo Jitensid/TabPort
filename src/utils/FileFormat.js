@@ -1,7 +1,8 @@
 //availabe file formats to download
 export const fileFormats = {
     json: 'json',
-    txt: 'txt'
+    txt: 'txt',
+    excel: 'xlsx',
 }
 
 //determins the correct URL type needed for the file download

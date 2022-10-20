@@ -202,6 +202,14 @@ const DownloadTabsList = ({ setShowUploadButton }) => {
 						defaultChecked={fileFormatSelection === fileFormats.txt}
 					/>
 					<label>{fileFormats.txt}</label>
+					<br />
+					<input
+						type={"radio"}
+						name={"fileType"}
+						value={fileFormats.excel}
+						defaultChecked={fileFormatSelection === fileFormats.excel}
+					/>
+					<label>{fileFormats.excel}</label>
 				</div>
 			</div>
 			<br />
