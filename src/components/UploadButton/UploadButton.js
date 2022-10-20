@@ -80,7 +80,7 @@ const UploadButton = ({showDownloadButton, setShowDownloadButton}) => {
 	const handleUploadButtonClick = () => {
 
 		// hide the download button
-		setShowDownloadButton(false)
+		setShowDownloadButton(prev => !prev);
 
 		// launch a file uploader dialog window after the upload button is clicked
 		fileInputRef.current.click();
