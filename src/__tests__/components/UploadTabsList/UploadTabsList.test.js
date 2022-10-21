@@ -99,6 +99,14 @@ describe('UploadTabsList component working properly', () => {
             expect(screen.queryByText('random-check-1')).not.toBeInTheDocument();
             expect(screen.queryByText('random-check-2')).not.toBeInTheDocument();
             expect(screen.queryByText('random-check-3')).not.toBeInTheDocument();
+            expect(screen.queryByText('random-check-4')).not.toBeInTheDocument();
+            expect(screen.queryByText('random-check-5')).not.toBeInTheDocument();
+            expect(screen.queryByText('random-check-6')).not.toBeInTheDocument();
+            expect(screen.queryByText('random-check-7')).not.toBeInTheDocument();
+            expect(screen.queryByText('random-check-8')).not.toBeInTheDocument();
+            expect(screen.queryByText('random-check-9')).not.toBeInTheDocument();
+            expect(screen.queryByText('random-check-10')).not.toBeInTheDocument();
+            expect(screen.queryByText('random-check-11')).not.toBeInTheDocument();
         });
 	});
 })
