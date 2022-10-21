@@ -1,5 +1,6 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import UploadTabsList from '../../../components/UploadTabsList/UploadTabsList';
+import chrome from '../../../chrome/chrome';
 
 const uploadedTabsToOpen = [
 	{ url: 'url1', title: 'title1' },
@@ -9,6 +10,16 @@ const uploadedTabsToOpen = [
 describe('UploadTabsList component working properly', () => {
     let openAllTabsCheckBoxElement;
     let openTabsButtonElement;
+    let handleOpenButtonClick = jest.spyOn(chrome.tabs, 'create').mockImplementation(
+        (
+            query,
+            cb = (tabs) => {
+                return tabs;
+            }
+        ) => {
+            return cb(uploadedTabsToOpen);
+        }
+    );
 
     beforeEach(() => {
         render(
@@ -44,6 +55,14 @@ describe('UploadTabsList component working properly', () => {
 		expect(openAllTabsCheckBoxElement).toHaveProperty('checked', true);
 	});
 
+
+	test('Open Tabs Button Click', () => {
+		// click the open tabs button
+		fireEvent.click(openTabsButtonElement);
+
+		// test that handleOpenButtonClick mock function is called
+		expect(handleOpenButtonClick).toBeCalledTimes(2);
+	});
 
 	// uncheck the downloadAllTabsCheckbox for this test suite
 	describe('downloadAllTabsCheckbox is unchecked', () => {
@@ -96,17 +115,6 @@ describe('UploadTabsList component working properly', () => {
             expect(screen.queryByText('Download Tabs')).not.toBeInTheDocument();
             expect(screen.queryByText('Upload Tabs')).not.toBeInTheDocument();
             expect(screen.queryByText('Back')).not.toBeInTheDocument();
-            expect(screen.queryByText('random-check-1')).not.toBeInTheDocument();
-            expect(screen.queryByText('random-check-2')).not.toBeInTheDocument();
-            expect(screen.queryByText('random-check-3')).not.toBeInTheDocument();
-            expect(screen.queryByText('random-check-4')).not.toBeInTheDocument();
-            expect(screen.queryByText('random-check-5')).not.toBeInTheDocument();
-            expect(screen.queryByText('random-check-6')).not.toBeInTheDocument();
-            expect(screen.queryByText('random-check-7')).not.toBeInTheDocument();
-            expect(screen.queryByText('random-check-8')).not.toBeInTheDocument();
-            expect(screen.queryByText('random-check-9')).not.toBeInTheDocument();
-            expect(screen.queryByText('random-check-10')).not.toBeInTheDocument();
-            expect(screen.queryByText('random-check-11')).not.toBeInTheDocument();
         });
 	});
 })
