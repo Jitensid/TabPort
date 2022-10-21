@@ -90,5 +90,14 @@ describe('UploadTabsList component working properly', () => {
 			// test that the single tab checkbox is checked
 			expect(firstTabCheckboxElement).toHaveProperty('checked', true);
 		});
+
+        // Both Download and Upload button won't be there as in UploadTabsList Page we have Open Tabs Button
+        test('Check if Download Button is absent when the prop for it is set to false', () => {
+            expect(screen.queryByText('Download Tabs')).not.toBeInTheDocument();
+        });
+        
+        test('Check if Upload Button is absent when the prop for it is set to false', () => {
+            expect(screen.queryByText('Upload Tabs')).not.toBeInTheDocument();
+        });
 	});
 })
