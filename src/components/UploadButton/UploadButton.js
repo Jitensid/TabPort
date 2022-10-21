@@ -17,6 +17,8 @@ const UploadButton = ({showDownloadButton, setShowDownloadButton}) => {
 	// state variable to store all the uploaded tabs with title and url
 	const [uploadedTabsToOpen, setUploadedTabsToOpen] = useState([]);
 
+	// state variable to store whether the tabs file has been uploaded or not
+	// This state is very important as without this the test files won't work
 	const [uploadDone, setUploadDone] = useState(false);
 
 	// making a reference to file input
@@ -135,6 +137,8 @@ const UploadButton = ({showDownloadButton, setShowDownloadButton}) => {
 				// update the jsonFile state variable
 				setjsonFile(uploadedFile);
 			}
+
+			// after file upload set the upload done stat to true
 			setUploadDone(true);
 		} else {
 			alert(`.${file_extension} file format not supported`);

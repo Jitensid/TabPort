@@ -34,6 +34,9 @@ describe('Upload Button Component functions working properly showDownloadButton 
 				}}
 			/>
 		);
+	});
+	
+	afterEach(() => {
 		jest.restoreAllMocks();
 	});
 
