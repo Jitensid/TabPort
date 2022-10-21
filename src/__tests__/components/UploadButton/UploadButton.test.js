@@ -109,7 +109,23 @@ describe('Upload Button Component functions working properly showDownloadButton 
 			return 's';
 		};
 
+
 		expect(fileReader.readAsText).toBeCalledWith(testJSONFile);
+		
+		// Open All Tabs Checkbox
+		const openAllTabsCheckBoxElement = screen.getByRole('checkbox');
+
+		// Open Tabs Button
+		const openTabsButtonElementOfUploadTabsListComponent =
+			screen.getByRole('button', {
+				name: 'Open Tabs',
+			});
+
+		// Checking if the checkbox and open tabs button is present or not
+		expect(openAllTabsCheckBoxElement).toBeInTheDocument();
+		expect(
+			openTabsButtonElementOfUploadTabsListComponent
+		).toBeInTheDocument();
 	});
 
 
@@ -184,5 +200,20 @@ describe('Upload Button Component functions working properly showDownloadButton 
 		};
 
 		expect(fileReader.readAsArrayBuffer).toBeCalledWith(testExcelFile);
+		
+		// Open All Tabs Checkbox
+		const openAllTabsCheckBoxElement = screen.getByRole('checkbox');
+
+		// Open Tabs Button
+		const openTabsButtonElementOfUploadTabsListComponent =
+			screen.getByRole('button', {
+				name: 'Open Tabs',
+			});
+
+		// Checking if the checkbox and open tabs button is present or not
+		expect(openAllTabsCheckBoxElement).toBeInTheDocument();
+		expect(
+			openTabsButtonElementOfUploadTabsListComponent
+		).toBeInTheDocument();
 	});
 });

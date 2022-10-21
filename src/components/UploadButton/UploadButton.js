@@ -17,6 +17,8 @@ const UploadButton = ({showDownloadButton, setShowDownloadButton}) => {
 	// state variable to store all the uploaded tabs with title and url
 	const [uploadedTabsToOpen, setUploadedTabsToOpen] = useState([]);
 
+	const [uploadDone, setUploadDone] = useState(false);
+
 	// making a reference to file input
 	const fileInputRef = useRef(null);
 
@@ -78,7 +80,6 @@ const UploadButton = ({showDownloadButton, setShowDownloadButton}) => {
 	};
 
 	const handleUploadButtonClick = () => {
-
 		// hide the download button
 		setShowDownloadButton(prev => !prev);
 
@@ -134,6 +135,7 @@ const UploadButton = ({showDownloadButton, setShowDownloadButton}) => {
 				// update the jsonFile state variable
 				setjsonFile(uploadedFile);
 			}
+			setUploadDone(true);
 		} else {
 			alert(`.${file_extension} file format not supported`);
 		}
@@ -144,7 +146,7 @@ const UploadButton = ({showDownloadButton, setShowDownloadButton}) => {
 
 	return (
 		<div>
-			{ (uploadedTabsToOpen.length === 0) ?
+			{ (uploadDone === false) ?
 			<div>
 				<input
 					data-testid="fileInputRef"
