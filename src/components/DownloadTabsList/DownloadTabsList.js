@@ -16,7 +16,7 @@ const DownloadTabsList = ({ setShowUploadButton }) => {
 	const [tabsToDownload, setTabsToDownload] = useState([]);
 
 	// state to validate amount of current open tabs
-	const [validateTabs, setValidateTabs] = useState(true);
+	const [validateNumberOfTabs, setValidateNumberOfTabs] = useState(true);
 
 	// state to store checkbox states for individual tabs
 	const [allTabsCheckBox, setAllTabsCheckBox] = useState(
@@ -40,9 +40,9 @@ const DownloadTabsList = ({ setShowUploadButton }) => {
 			// set checkbox to download all tabs to true
 			setDownloadAllTabs(true);
 
-			// set props validateTabs if only a single tab open
+			// set props validateNumberOfTabs if only a single tab open
 			if(currentTabsOpen.length <= 1){
-				setValidateTabs(false);
+				setValidateNumberOfTabs(false);
 			}
 
 			// set the state for all checkboxes to true
@@ -183,8 +183,9 @@ const DownloadTabsList = ({ setShowUploadButton }) => {
 
 	const showDownloadCheckbox = () => {
 		return (
-			<div>
+			<div style={{display: validateNumberOfTabs === true ? 'block' : 'none'}}>
 				<input
+				id="checkboxTabs"
 				type="checkbox"
 				defaultChecked={downloadAllTabs}
 				onChange={handleCheckBoxChange}
@@ -228,7 +229,7 @@ const DownloadTabsList = ({ setShowUploadButton }) => {
 				</div>
 			</div>
 			<br />
-			{validateTabs === true ? showDownloadCheckbox() : null}
+			{showDownloadCheckbox()}
 			<button
 				style={{ marginBottom: '20px' }}
 				className="extension_button"

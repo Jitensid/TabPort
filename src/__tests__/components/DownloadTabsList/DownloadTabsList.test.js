@@ -43,12 +43,27 @@ describe('DownloadTabsList Component with setShowUploadButton hidden', () => {
 		downloadTabsButtonElement = screen.getByRole('button', {
 			name: 'Download Tabs',
 		});
-		downloadAllTabsCheckBoxElement = screen.getByRole('checkbox');
+		downloadAllTabsCheckBoxElement = document.querySelector("#checkboxTabs");
 	});
 
 	afterEach(() => {
 		jest.restoreAllMocks();
 	});
+
+	const testsValidateTabs = () => {
+		// assume opened tabs more than one
+		if(mockedTabsList.length > 1){
+			test("Show Download All Tabs checkbox", () => {
+				expect(downloadAllTabsCheckBoxElement).toBeVisible();
+			});
+		} else {
+			test("Hide Download All Tabs checkbox", () => {
+				expect(downloadAllTabsCheckBoxElement).not.toBeVisible();
+			});
+		}
+	}
+
+	testsValidateTabs();
 
 	test('Back, Download Tabs Button and Download All Tabs checkbox is rendered properly', () => {
 		// test that back, downloadTabs and downloadAllTabs Checkbox are rendered properly
