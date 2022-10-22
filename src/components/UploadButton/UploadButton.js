@@ -2,16 +2,24 @@
 
 import { useEffect, useRef, useState } from 'react';
 import useChromeAPIToGetTabs from '../../customhooks/useChromeAPIToGetTabs/useChromeAPIToGetTabs';
+import UploadTabsList from '../UploadTabsList/UploadTabsList';
 import '../Button.css';
 import { fileFormats } from '../../utils/FileFormat';
 import { read, utils } from 'xlsx';
 
-const UploadButton = () => {
+const UploadButton = ({showDownloadButton, setShowDownloadButton}) => {
 	// get opened tabs of the current browser window with useChromeAPIToGetTabs hook
 	const [currentTabsOpen, setCurrentTabs] = useChromeAPIToGetTabs();
 
 	// state variable to set the jsonFile contents
 	const [jsonFile, setjsonFile] = useState(null);
+
+	// state variable to store all the uploaded tabs with title and url
+	const [uploadedTabsToOpen, setUploadedTabsToOpen] = useState([]);
+
+	// state variable to store whether the tabs file has been uploaded or not
+	// This state is very important as without this the test files won't work
+	const [uploadDone, setUploadDone] = useState(false);
 
 	// making a reference to file input
 	const fileInputRef = useRef(null);
@@ -60,18 +68,23 @@ const UploadButton = () => {
 		// parse the JSON object from the uploaded JSON file
 		const newTabsToOpen = JSON.parse(fileReaderResult);
 
-		// iterate all the tabs and launch the tabs into the browser
-		newTabsToOpen.map((tab) => {
-			chrome.tabs.create({
-				url: tab.url,
-			});
-		});
+		// update the uploadedTabsToOpen state
+		setUploadedTabsToOpen(prev => {
+			const current = [];
+			newTabsToOpen.map((tab) => {
+				current.push(tab);
+			})
+			return current;
+		})
 
 		// update the state variable to add new tabs from file also
 		setCurrentTabs([...currentTabsOpen, ...newTabsToOpen]);
 	};
 
 	const handleUploadButtonClick = () => {
+		// hide the download button
+		setShowDownloadButton(prev => !prev);
+
 		// launch a file uploader dialog window after the upload button is clicked
 		fileInputRef.current.click();
 	};
@@ -124,6 +137,9 @@ const UploadButton = () => {
 				// update the jsonFile state variable
 				setjsonFile(uploadedFile);
 			}
+
+			// after file upload set the upload done stat to true
+			setUploadDone(true);
 		} else {
 			alert(`.${file_extension} file format not supported`);
 		}
@@ -134,16 +150,21 @@ const UploadButton = () => {
 
 	return (
 		<div>
-			<input
-				data-testid="fileInputRef"
-				ref={fileInputRef}
-				type="file"
-				onChange={handleFileUpload}
-				style={{ opacity: 0 }}
-			/>
-			<button class="extension_button" onClick={handleUploadButtonClick}>
-				Upload Tabs
-			</button>
+			{ (uploadDone === false) ?
+			<div>
+				<input
+					data-testid="fileInputRef"
+					ref={fileInputRef}
+					type="file"
+					onChange={handleFileUpload}
+					style={{ opacity: 0 }}
+				/>
+				<button class="extension_button" onClick={handleUploadButtonClick}>
+					Upload Tabs
+				</button>
+			</div> :
+			<UploadTabsList uploadedTabsToOpen={uploadedTabsToOpen}/>
+			}
 		</div>
 	);
 };

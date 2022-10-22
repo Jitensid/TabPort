@@ -7,9 +7,16 @@ import { utils } from 'xlsx';
 window.alert = jest.fn();
 
 // Test suite for Upload Button Component
-describe('Upload Button Component renders properly', () => {
-	test('Check if Upload Button is working properly', () => {
-		render(<UploadButton />);
+describe('Upload Button Component showDownloadButton equal to true', () => {
+	test('Check if Upload Button renders properly', () => {
+		render(
+			<UploadButton 
+				showDownloadButton={true}
+				setShowDownloadButton={() => {
+					jest.fn();
+				}}
+			/>
+		);
 
 		// check if the upload button and file input reference are present in the document
 		expect(screen.getByText('Upload Tabs')).toBeInTheDocument();
@@ -17,9 +24,19 @@ describe('Upload Button Component renders properly', () => {
 	});
 });
 
-describe('Upload Button Component functions work properly', () => {
+describe('Upload Button Component functions working properly showDownloadButton equal to false', () => {
 	beforeEach(() => {
-		render(<UploadButton />);
+		render(
+			<UploadButton
+				showDownloadButton={false}
+				setShowDownloadButton={() => {
+					jest.fn();
+				}}
+			/>
+		);
+	});
+	
+	afterEach(() => {
 		jest.restoreAllMocks();
 	});
 
@@ -95,7 +112,23 @@ describe('Upload Button Component functions work properly', () => {
 			return 's';
 		};
 
+
 		expect(fileReader.readAsText).toBeCalledWith(testJSONFile);
+		
+		// Open All Tabs Checkbox
+		const openAllTabsCheckBoxElement = screen.getByRole('checkbox');
+
+		// Open Tabs Button
+		const openTabsButtonElementOfUploadTabsListComponent =
+			screen.getByRole('button', {
+				name: 'Open Tabs',
+			});
+
+		// Checking if the checkbox and open tabs button is present or not
+		expect(openAllTabsCheckBoxElement).toBeInTheDocument();
+		expect(
+			openTabsButtonElementOfUploadTabsListComponent
+		).toBeInTheDocument();
 	});
 
 
@@ -170,5 +203,20 @@ describe('Upload Button Component functions work properly', () => {
 		};
 
 		expect(fileReader.readAsArrayBuffer).toBeCalledWith(testExcelFile);
+		
+		// Open All Tabs Checkbox
+		const openAllTabsCheckBoxElement = screen.getByRole('checkbox');
+
+		// Open Tabs Button
+		const openTabsButtonElementOfUploadTabsListComponent =
+			screen.getByRole('button', {
+				name: 'Open Tabs',
+			});
+
+		// Checking if the checkbox and open tabs button is present or not
+		expect(openAllTabsCheckBoxElement).toBeInTheDocument();
+		expect(
+			openTabsButtonElementOfUploadTabsListComponent
+		).toBeInTheDocument();
 	});
 });
