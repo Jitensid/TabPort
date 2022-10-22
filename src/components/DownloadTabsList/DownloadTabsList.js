@@ -3,7 +3,7 @@ import useChromeAPIToGetTabs from '../../customhooks/useChromeAPIToGetTabs/useCh
 import { fileFormats } from '../../utils/FileFormat';
 import { copyFile, downloadFile } from '../../utils/JSONFileOperations/JSONFileOperations';
 import '../Button.css';
-import './DownloadTabsList.css';
+import '../TabsList.css';
 
 const DownloadTabsList = ({ setShowUploadButton }) => {
 	// get opened tabs of the current browser window with useChromeAPIToGetTabs hook
@@ -226,6 +226,14 @@ const DownloadTabsList = ({ setShowUploadButton }) => {
 						defaultChecked={fileFormatSelection === fileFormats.txt}
 					/>
 					<label>{fileFormats.txt}</label>
+					<br />
+					<input
+						type={"radio"}
+						name={"fileType"}
+						value={fileFormats.excel}
+						defaultChecked={fileFormatSelection === fileFormats.excel}
+					/>
+					<label>{fileFormats.excel}</label>
 				</div>
 			</div>
 			<br />

@@ -30,3 +30,5 @@ If you face any issues or have any suggestions please let me know. Your construc
 ### Contributions
 
 This project is open source. You are always welcome to raise issues and features.
+
+Please refer the [CONTRIBUTING.MD](https://github.com/Jitensid/TabPort/blob/main/CONTRIBUTING.MD) file to know the steps for contributing to the codebase.

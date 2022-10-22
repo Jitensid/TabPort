@@ -1,22 +1,25 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import DownloadTabsList from '../../../components/DownloadTabsList/DownloadTabsList';
 import chrome from '../../../chrome/chrome';
+import {
+	copyFile,
+	downloadFile,
+} from '../../../utils/JSONFileOperations/JSONFileOperations';
 
-// stores the titles and urls of tabs used for unit testss
+jest.mock('../../../utils/JSONFileOperations/JSONFileOperations');
+
+// stores the titles and urls of tabs used for unit tests
 const mockedTabsList = [
 	{ url: 'url1', title: 'title1' },
 	{ url: 'url2', title: 'title2' },
 ];
 
-global.URL = {
-	createObjectURL: jest.fn(),
-};
-
 describe('DownloadTabsList Component with setShowUploadButton hidden', () => {
 	let backButtonElement;
 	let downloadTabsButtonElement;
+	let copyTabsButtonElement;
 	let downloadAllTabsCheckBoxElement;
-	let mockedTabsQuery, mockedCreateObjectURL, mockedDownloadTabs;
+	let mockedTabsQuery;
 
 	beforeEach(() => {
 		mockedTabsQuery = jest.spyOn(chrome.tabs, 'query').mockImplementation(
@@ -30,18 +33,13 @@ describe('DownloadTabsList Component with setShowUploadButton hidden', () => {
 			}
 		);
 
-		mockedCreateObjectURL = jest
-			.spyOn(global.URL, 'createObjectURL')
-			.mockImplementation(() => {});
-
-		mockedDownloadTabs = jest
-			.spyOn(chrome.downloads, 'download')
-			.mockImplementation((options) => {});
-
 		render(<DownloadTabsList setShowUploadButton={false} />);
 		backButtonElement = screen.getByRole('button', { name: 'Back' });
 		downloadTabsButtonElement = screen.getByRole('button', {
 			name: 'Download Tabs',
+		});
+		copyTabsButtonElement = screen.getByRole('button', {
+			name: 'Copy Tabs',
 		});
 		downloadAllTabsCheckBoxElement = document.querySelector("#checkboxTabs");
 	});
@@ -65,10 +63,11 @@ describe('DownloadTabsList Component with setShowUploadButton hidden', () => {
 
 	testsValidateTabs();
 
-	test('Back, Download Tabs Button and Download All Tabs checkbox is rendered properly', () => {
+	test('Back, Download Tabs Button, Copy Tabs Button and Download All Tabs checkbox is rendered properly', () => {
 		// test that back, downloadTabs and downloadAllTabs Checkbox are rendered properly
 		expect(backButtonElement).toBeInTheDocument();
 		expect(downloadTabsButtonElement).toBeInTheDocument();
+		expect(copyTabsButtonElement).toBeInTheDocument();
 		expect(downloadAllTabsCheckBoxElement).toBeInTheDocument();
 		expect(mockedTabsQuery).toBeCalledTimes(1);
 	});
@@ -82,11 +81,16 @@ describe('DownloadTabsList Component with setShowUploadButton hidden', () => {
 		// click the download tabs button
 		fireEvent.click(downloadTabsButtonElement);
 
-		// test that createObjectURL mock function is called
-		expect(mockedCreateObjectURL).toBeCalledTimes(1);
+		// test that downloadFile mock function is called
+		expect(downloadFile).toBeCalledTimes(1);
+	});
 
-		// test that chrome's download api mock function is called
-		expect(mockedDownloadTabs).toBeCalledTimes(1);
+	test('CopyTabs Button Click', () => {
+		// click the copy tabs button
+		fireEvent.click(copyTabsButtonElement);
+
+		// test that copyFile mock function is called
+		expect(copyFile).toBeCalledTimes(1);
 	});
 
 	// uncheck the downloadAllTabsCheckbox for this test suite
